@@ -113,12 +113,10 @@ MonoBehaviour:
   HitPunchScale: 1.3
   HitPunchDuration: 0.12
   HitShrinkDuration: 0.15
+  PopSound: {fileID: 8300000, guid: 4c323243faddb544bb2b3283108c3e78, type: 3}
+  HitSound: {fileID: 8300000, guid: 238ffead231466d4a8f6c197a74e3510, type: 3}
   MoleColors:
-  - {r: 1, g: 0.4, b: 0.4, a: 1}
-  - {r: 1, g: 0.8, b: 0.2, a: 1}
-  - {r: 0.4, g: 0.85, b: 0.4, a: 1}
-  - {r: 0.4, g: 0.7, b: 1, a: 1}
-  - {r: 0.9, g: 0.5, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6383348371096851800
 GameObject:
   m_ObjectHideFlags: 0

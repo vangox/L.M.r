@@ -19,14 +19,28 @@ public class MoleController : MonoBehaviour
     public float HitPunchDuration  = 0.12f;
     public float HitShrinkDuration = 0.15f;
 
+    [Header("Audio")]
+    public AudioClip PopSound;
+    public AudioClip HitSound;
+
     [Header("Colors")]
     public Color[] MoleColors = new Color[]
     {
-        new Color(1.00f, 0.40f, 0.40f),
-        new Color(1.00f, 0.80f, 0.20f),
-        new Color(0.40f, 0.85f, 0.40f),
-        new Color(0.40f, 0.70f, 1.00f),
-        new Color(0.90f, 0.50f, 1.00f),
+        new Color(
+            1.00f, 0.40f, 0.40f
+        ),
+        new Color(
+            1.00f, 0.80f, 0.20f
+        ),
+        new Color(
+            0.40f, 0.85f, 0.40f
+        ),
+        new Color(
+            0.40f, 0.70f, 1.00f
+        ),
+        new Color(
+            0.90f, 0.50f, 1.00f
+        ),
     };
 
     public MoleState State { get; private set; } = MoleState.Hidden;
@@ -34,12 +48,17 @@ public class MoleController : MonoBehaviour
     // Callback registered by WhacAMoleGame
     public System.Action<MoleController> OnHit;
 
-    private float _visibleTimer;
-    private float _hitTimer;
-    private int   _hitPhase;   // 0 = punch up, 1 = shrink to zero
+    private float       _visibleTimer;
+    private float       _hitTimer;
+    private int         _hitPhase;   // 0 = punch up, 1 = shrink to zero
+    private AudioSource _audioSource;
 
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+            _audioSource = gameObject.AddComponent<AudioSource>();
+
         DwellButton.OnDwellComplete.AddListener(HandleDwellComplete);
         DwellButton.enabled = false;
         SetMoleY(-MoleHeight);
@@ -116,6 +135,10 @@ public class MoleController : MonoBehaviour
         _visibleTimer = duration;
         RandomizeColor();
         MoleRect.localScale = Vector3.one;
+
+        if (PopSound != null)
+            _audioSource.PlayOneShot(PopSound);
+
         EnterState(MoleState.Rising);
     }
 
@@ -141,13 +164,19 @@ public class MoleController : MonoBehaviour
     private void HandleDwellComplete()
     {
         if (State != MoleState.Visible) return;
+
+        if (HitSound != null)
+            _audioSource.PlayOneShot(HitSound);
+
         EnterState(MoleState.Hit);
         OnHit?.Invoke(this);
     }
 
     private void SetMoleY(float y)
     {
-        MoleRect.anchoredPosition = new Vector2(0f, y);
+        MoleRect.anchoredPosition = new Vector2(
+            0f, y
+        );
     }
 
     private void RandomizeColor()
