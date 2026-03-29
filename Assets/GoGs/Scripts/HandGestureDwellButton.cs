@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HandGestureDwellButton : MonoBehaviour
 {
     [Header("Dwell Settings")]
-    [Range(0.5f, 10f)]
+    [Range(0.01f, 10f)]
     [Tooltip("Seconds the pointer must stay over this element to trigger.")]
     public float dwellDuration = 3f;
 

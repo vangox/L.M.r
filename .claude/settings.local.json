@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find G:/UnityProjects/L.M.R/L.M.R/Assets -name *.unity)"
+      "Bash(find G:/UnityProjects/L.M.R/L.M.R/Assets -name *.unity)",
+      "Bash(find G:/UnityProjects/L.M.R/L.M.R/Assets/GoGs/Games/WhacAMole/ -type f -exec ls -lh {})",
+      "Bash(2)",
+      "Bash(find G:/UnityProjects/L.M.R/L.M.R/Assets/GoGs/ -type f -exec ls -lh {})",
+      "Bash(find G:/UnityProjects/L.M.R/L.M.R/Assets -name *.cs -exec grep -l TextMeshPro {})"
     ]
   }
 }
