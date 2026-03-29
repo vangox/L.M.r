@@ -85,6 +85,10 @@ public class HandGestureDetector : MonoBehaviour
     private readonly Queue<TimedSample> _rightBuffer = new Queue<TimedSample>();
     private float _cooldownRemaining;
     private Vector2 _pointerScreenPos;
+    private bool    _pointerVisible;
+    public Vector2 PointerScreenPosition => _pointerScreenPos;
+    /// <summary>True when the hand is currently tracked and the pointer is visible.</summary>
+    public bool IsPointerVisible => _pointerVisible;
 
     private void OnDisable()
     {
@@ -178,11 +182,13 @@ public class HandGestureDetector : MonoBehaviour
 
         if (!present)
         {
+            _pointerVisible = false;
             if (hideWhenNoHand && pointerElement != null)
                 pointerElement.gameObject.SetActive(false);
             return;
         }
 
+        _pointerVisible = true;
         if (pointerElement != null && hideWhenNoHand)
             pointerElement.gameObject.SetActive(true);
 
@@ -192,11 +198,15 @@ public class HandGestureDetector : MonoBehaviour
         float xNorm = Mathf.Clamp01(Mathf.InverseLerp(inputMin.x, inputMax.x, x));
         float yNorm = Mathf.Clamp01(Mathf.InverseLerp(inputMin.y, inputMax.y, y));
         // MediaPipe Y=0 is top; screen Y=0 is bottom → flip Y
-        var target = new Vector2(xNorm * Screen.width, (1f - yNorm) * Screen.height);
+        var target = new Vector2(
+            xNorm * Screen.width, (1f - yNorm) * Screen.height
+        );
         _pointerScreenPos = Vector2.Lerp(_pointerScreenPos, target, Time.deltaTime * smoothing);
 
         if (pointerElement != null)
-            pointerElement.position = new Vector3(_pointerScreenPos.x, _pointerScreenPos.y, 0f);
+            pointerElement.position = new Vector3(
+                _pointerScreenPos.x, _pointerScreenPos.y, 0f
+            );
 
 #if ENABLE_INPUT_SYSTEM
         if (emulateMouse)

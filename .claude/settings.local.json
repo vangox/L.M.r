@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find G:/UnityProjects/L.M.R/L.M.R/Assets -name *.unity)"
+    ]
+  }
+}
