@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 0166da73f3ad61c4ab0cd198a87616a2
+  - enabled: 1
+    path: Assets/GoGs/Games/WhacAMole/WhacAMole.unity
+    guid: 4c3c6108d9ebc3647ab6383d3c84d1f4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
