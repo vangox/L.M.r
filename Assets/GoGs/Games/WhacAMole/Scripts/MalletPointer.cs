@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class MalletPointer : MonoBehaviour
 {
+    [Header("Audio")]
+    public AudioClip HitSound;
+
     [Header("Swing Animation")]
     [Tooltip("Resting rotation Z (mallet up).")]
     public float IdleRotationZ  = -319f;
@@ -16,11 +19,16 @@ public class MalletPointer : MonoBehaviour
     public float SwingUpSpeed   = 200f;
 
     private enum SwingState { Idle, SwingingDown, SwingingUp }
-    private SwingState _swing    = SwingState.Idle;
-    private float      _currentZ;
+    private SwingState  _swing    = SwingState.Idle;
+    private float       _currentZ;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+            _audioSource = gameObject.AddComponent<AudioSource>();
+
         _currentZ = IdleRotationZ;
         ApplyRotation();
     }
@@ -36,6 +44,9 @@ public class MalletPointer : MonoBehaviour
     {
         // Re-triggers even mid-swing so rapid hits feel responsive
         _swing = SwingState.SwingingDown;
+
+        if (HitSound != null)
+            _audioSource.PlayOneShot(HitSound);
     }
 
     private void Update()
