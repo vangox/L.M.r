@@ -707,6 +707,9 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 180732578}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3277792e1cc78864691f48adf09ba626, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 180732581}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3277792e1cc78864691f48adf09ba626, type: 3}
       insertIndex: -1
       addedObject: {fileID: 180732577}
   m_SourcePrefab: {fileID: 100100000, guid: 3277792e1cc78864691f48adf09ba626, type: 3}
@@ -760,6 +763,25 @@ MonoBehaviour:
   HitFlashDuration: 0.4
   FlashRenderers: []
   GameManager: {fileID: 1582666720}
+--- !u!114 &180732581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180732576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f8300b4648fe44c8c1959bf5e6f9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BodyPositionLane
+  DataProvider: {fileID: 506183297}
+  Player: {fileID: 180732578}
+  EnableBodyTracking: 1
+  MirrorX: 1
+  LeftThreshold: 0.4
+  RightThreshold: 0.6
+  HysteresisBand: 0.03
 --- !u!1 &229336661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,7 +1132,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506183295}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bb6ca9ca2fb5af40ac8a87879a5d43f, type: 3}
   m_Name: 
@@ -1331,7 +1353,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 7e4490d6f22936c499cbd68f2084069b, type: 3}
+  m_Resource: {fileID: 8300000, guid: a9e4f493a9ed9024494831e913710a06, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.677
   m_Pitch: 1
@@ -2832,7 +2854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.22745098}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

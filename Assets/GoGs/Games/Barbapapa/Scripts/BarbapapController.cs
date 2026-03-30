@@ -94,24 +94,21 @@ public class BarbapapController : MonoBehaviour
 
     // ── Lane Movement ─────────────────────────────────────────────────────────
 
-    private void MoveLeft()
+    public void SetLane(int lane)
     {
         if (GameManager != null && !GameManager.IsPlaying) return;
-        if (_currentLane > 0)
-        {
-            _currentLane--;
-            _targetX = LaneX(_currentLane);
-        }
+        _currentLane = Mathf.Clamp(lane, 0, 2);
+        _targetX     = LaneX(_currentLane);
+    }
+
+    private void MoveLeft()
+    {
+        if (_currentLane > 0) SetLane(_currentLane - 1);
     }
 
     private void MoveRight()
     {
-        if (GameManager != null && !GameManager.IsPlaying) return;
-        if (_currentLane < 2)
-        {
-            _currentLane++;
-            _targetX = LaneX(_currentLane);
-        }
+        if (_currentLane < 2) SetLane(_currentLane + 1);
     }
 
     private float LaneX(int lane) => (lane - 1) * LaneWidth;
